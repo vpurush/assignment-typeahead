@@ -1,0 +1,9 @@
+<div class="typeahead">
+    <input type="text" [(ngModel)]="input" (focus)="onFocus()" (blur)="onBlur()" (keyup)="onKeyup($event)" />
+    <ul class="typeahead-list" [ngClass]="{'hide': !showSuggestions || itemList.length == 0}">
+        <!-- <li *ngFor="let item of data | async as typeaheadList" (click)="select(item)"> -->
+        <li *ngFor="let item of itemList" (click)="select(item)">
+            {{item}}
+        </li>
+    </ul>
+</div>

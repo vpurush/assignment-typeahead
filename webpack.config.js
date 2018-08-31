@@ -43,12 +43,22 @@ module.exports = {
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
+                // loaders: [
+                //     'to-string-loader',
+                //     'css-loader?sourceMap',
+                //     'sass-loader?sourceMap'
+                // ]
                 use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
                     use: [
-                        'css-loader',
-                        'sass-loader'
+                        'css-loader?sourceMap',
+                        'sass-loader?sourceMap'
                     ]
                 }),
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
             },
             {
                 test: /\.(eot|ttf|woff|woff2|otf)$/,
@@ -63,6 +73,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/public/index.html'
-        })
-    ]
+        }),
+        new ExtractTextPlugin("app.css")
+    ],
+    devtool: 'source-map'
 }
