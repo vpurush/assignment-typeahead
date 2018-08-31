@@ -1,0 +1,51 @@
+{
+  "name": "assignment-typeahead",
+  "version": "1.0.0",
+  "description": "Application to demonstrate the use of typeahead",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "http-server -p 1234 -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vpurush/assignment-typeahead.git"
+  },
+  "dependencies": {
+    "@angular/common": "^4.4.4",
+    "@angular/compiler": "^4.4.4",
+    "@angular/core": "^4.4.4",
+    "@angular/platform-browser": "^4.4.4",
+    "@angular/platform-browser-dynamic": "^4.4.4",
+    "rxjs": "^5.4.3",
+    "zone.js": "^0.8.18",
+    "core-js": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.6.32",
+    "@types/node": "^8.0.31",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^5.2.0",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "ts-loader": "^4.5.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2"
+  },
+  "keywords": [
+    "typeahead"
+  ],
+  "author": "Vijay Purush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vpurush/assignment-typeahead/issues"
+  },
+  "homepage": "https://github.com/vpurush/assignment-typeahead#readme"
+}
