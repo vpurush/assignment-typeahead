@@ -76,6 +76,12 @@ const generateProductList = (product, company, price, color, noOfItemsAlreadyLoa
             }
         }
         product = product || 'Handbags';
+
+        if(!company){
+            if(product){
+                company = masterData.company[product][0];
+            }
+        }
         company = company || 'Gucci';
         price = price || "$401 to $1000";
         color = color || "orange";
