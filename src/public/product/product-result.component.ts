@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import './product-result.component.scss';
 import { Observable } from "rxjs";
 import { ProductService } from "./product.service";
@@ -16,4 +16,15 @@ export class ProductResultComponent {
 
     @Input()
     data: Array<any>;
+
+    @Output()
+    lastItemScrolledIntoView: EventEmitter<any> = new EventEmitter<any>();
+
+
+    childScrolledIntoView(idx: any){
+        if(idx == this.data.length - 1){
+            // console.log("last item");
+            this.lastItemScrolledIntoView.emit();
+        }
+    }
 }

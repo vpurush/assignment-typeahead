@@ -100,8 +100,8 @@ export class ProductService{
         });
     }
 
-    getProductList(productName: string, companyName: string, priceRange: string, color: string ): Observable<Array<any>>{
-        let result : Array<any> = generateProductList(productName, companyName, priceRange,  color);
+    getProductList(productName: string, companyName: string, priceRange: string, color: string, noOfItemsAlreadyLoaded: Number = 0 ): Observable<Array<any>>{
+        let result : Array<any> = generateProductList(productName, companyName, priceRange,  color, noOfItemsAlreadyLoaded);
         // console.log("generateProductList", result);
         return Observable.of(result);
     }

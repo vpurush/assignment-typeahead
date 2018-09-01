@@ -8,9 +8,9 @@ const _images = {
         'shoe-4.jpeg'
     ],
     electronics: [
-        'phone1.png',
-        'phone2.png',
-        'phone3.png',
+        'phone-1.png',
+        'phone-2.png',
+        'phone-3.png',
         'camera-2.png',
         'camera-3.jpeg'
     ],
@@ -39,39 +39,46 @@ const _images = {
     ]
 }
 
-const generateProductList = (product, company, price, color) => {
+const generateProductList = (product, company, price, color, noOfItemsAlreadyLoaded) => {
+    console.log("product, company, price, color, noOfItemsAlreadyLoaded", product, company, price, color, noOfItemsAlreadyLoaded);
     let output = [];
-    let minPrice, maxPrice, priceRange;
-    if(price.indexOf('to') != -1){
-        let priceParts = price.split('to');
-        minPrice = parseInt(priceParts[0].replace('$', ''));
-        maxPrice = parseInt(priceParts[1].replace('$', ''));
-    }else if(price.indexOf('<') != -1){
-        minPrice = 0;
-        maxPrice = parseInt(price.replace('<', '').replace('$', ''));
-    }else{
-        minPrice = parseInt(price.replace('>', '').replace('$', ''));
-        maxPrice = 99999999;
+    if(noOfItemsAlreadyLoaded < 50){
+        let minPrice, maxPrice, priceRange;
+        if(price.indexOf('to') != -1){
+            let priceParts = price.split('to');
+            minPrice = parseInt(priceParts[0].replace('$', ''));
+            maxPrice = parseInt(priceParts[1].replace('$', ''));
+        }else if(price.indexOf('<') != -1){
+            minPrice = 0;
+            maxPrice = parseInt(price.replace('<', '').replace('$', ''));
+        }else{
+            minPrice = parseInt(price.replace('>', '').replace('$', ''));
+            maxPrice = 99999999;
+        }
+        priceRange = maxPrice - minPrice;
+
+        console.log("maxPrice minPrice", maxPrice, minPrice);
+
+        product = product || 'Handbags';
+        company = company || 'Gucci';
+        price = price || "$401 to $1000";
+        console.log("color", color);
+        color = color || "orange";
+        console.log("color", color);
+        
+
+        for(let i=0; i<20; i++){
+            let imgUrls = _images[product.toLowerCase()];
+            output.push(new Product(product, 
+                company, 
+                Math.ceil(Math.random() * priceRange + minPrice), 
+                color,
+                imgUrls[Math.floor(Math.random() * imgUrls.length)]
+            ));
+        }
     }
-    priceRange = maxPrice = minPrice;
 
-    console.log("maxPrice minPrice", maxPrice, minPrice);
-
-    product = product || 'Handbags';
-    company = company || 'Gucci';
-    price = price || "$401 to $1000";
-    color = color || "orange";
-
-    for(let i=0; i<20; i++){
-        let imgUrls = _images[product.toLowerCase()];
-        output.push(new Product(product, 
-            company, 
-            Math.ceil(Math.random() * priceRange + minPrice), 
-            color,
-            imgUrls[Math.floor(Math.random() * imgUrls.length)]
-        ));
-    }
-
+    console.log("generator output", output);
     return output;
 }
 

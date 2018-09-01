@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {ProductListComponent} from './product/product-list.component';
 import {ProductSearchComponent} from './product/product-search.component';
 import {ProductResultComponent} from './product/product-result.component';
+import {ProductResultItemComponent} from './product/product-result-item.component';
 import {TypeaheadComponent} from './product/typeahead.component';
 import {RangeComponent} from './product/range.component';
 import { ProductService } from "./product/product.service";
@@ -16,7 +17,8 @@ import { ProductService } from "./product/product.service";
         TypeaheadComponent,
         RangeComponent,
         ProductSearchComponent,
-        ProductResultComponent
+        ProductResultComponent,
+        ProductResultItemComponent
     ],
     imports: [
         BrowserModule,

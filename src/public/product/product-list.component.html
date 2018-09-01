@@ -1,2 +1,2 @@
 <product-search (onSearch)="search($event)"></product-search>
-<product-result [data]="searchResult"></product-result>
+<product-result [data]="searchResult" (lastItemScrolledIntoView)="lastItemScrolledIntoView()"></product-result>

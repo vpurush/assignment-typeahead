@@ -47,7 +47,7 @@ export class ProductSearchComponent {
     }
 
     colorSelect(colorName: string){
-        this.selectedCompany = colorName;
+        this.selectedColor = colorName;
     }
 
     selectedPrice:string;
