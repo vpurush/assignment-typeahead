@@ -5,6 +5,10 @@ product-list {
     flex: 0 0 auto; }
   product-list product-result {
     flex: 1 0; }
+.product-search .search-box fieldset {
+  border: none;
+  display: inline-block;
+  width: 17%; }
 body {
   font-family: 'Roboto', sans-serif;
   padding: 0 0;
@@ -51,10 +55,6 @@ body {
       flex: 0 0 auto; }
   .app main {
     flex: 1 0; }
-.product-search .search-box fieldset {
-  border: none;
-  display: inline-block;
-  width: 17%; }
 .product-search-result {
   display: flex;
   flex-direction: row;

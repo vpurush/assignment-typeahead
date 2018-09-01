@@ -1,20 +1,22 @@
-<div class="product-item" #elm>
-    <img [src]="'/dist/images/' + imageUrl" class="product-image" />
-    <span class="product">
-        <label>Product:</label>
-        {{product}}
-    </span>
-    <span class="company">
-        <label>Company:</label>
-        {{company}}
-    </span>
-    <span class="price">
-        <label>Price:</label>
-        {{price | currency: 'USD' : 'symbol-narrow'}}
-    </span>
-    <span class="color">
-        <label>Color:</label>
-        <span class="color-value" [ngStyle]="{'background-color': color}">
+<div class="product-item" #elm [ngStyle]="{'height.px': height, 'width.px': width}">
+    <div *ngIf="!hidden">
+        <img [src]="'/dist/images/' + imageUrl" class="product-image" />
+        <span class="product">
+            <label>Product:</label>
+            {{product}}
         </span>
-    </span>
+        <span class="company">
+            <label>Company:</label>
+            {{company}}
+        </span>
+        <span class="price">
+            <label>Price:</label>
+            {{price | currency: 'USD' : 'symbol-narrow'}}
+        </span>
+        <span class="color">
+            <label>Color:</label>
+            <span class="color-value" [ngStyle]="{'background-color': color}">
+            </span>
+        </span>
+    </div>
 </div>
