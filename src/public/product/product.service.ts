@@ -2,71 +2,15 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import { generateProductList } from '../mock-data/product-list-generator';
+import { masterData } from '../mock-data/master-data';
 
-
-let mockData = {
-    products: [
-        'Electronics',
-        'Shoes',
-        'Handbags',
-        'Kitchen',
-        'Fashion',
-        'Grooming'
-    ],
-    company: {
-        'Electronics': [
-            'Nikon',
-            'Samsung',
-            'Sony',
-            'LG',
-            'IFB',
-            'Panasonic'
-        ],
-        'Shoes':[
-            'Reebok',
-            'Nike',
-            'Puma'
-        ],
-        'Handbags': [
-            'Gucci',
-            'Capreese',
-            'Guess',
-            'Fossil'
-        ],
-        'Kitchen': [
-            'Godrej',
-            'Samsung',
-            'LG',
-            'IFB',
-            'Panasonic'
-        ],
-        'Fashion': [
-            'Gucci Fashion',
-            'Capreese',
-            'Guess',
-            'Fossil'
-        ],
-        'Grooming': [
-            'Phillips',
-            'Panasonic',
-            'Casio'
-        ]
-    },
-    colors: [
-        'white',
-        'blue',
-        'green',
-        'yellow',
-        'orange'
-    ]
-}
 
 @Injectable()
 export class ProductService{
 
     getProducts(productName: string): Observable<string[]>{
         return new Observable((observer) => {
-            let output = mockData.products.filter(p => {
+            let output = masterData.products.filter((p:string) => {
                 return p.toLowerCase().indexOf(productName) != -1;
             });            
             observer.next(output);
@@ -77,11 +21,11 @@ export class ProductService{
         return new Observable((observer) => {
             let fullList: string[] = [], filteredList: string[] = [];
             if(productName && productName.length){
-                fullList = mockData.company[productName];
+                fullList = masterData.company[productName];
             }else{
                 fullList = [];
-                Object.keys(mockData.company).forEach(k => {
-                    Array.prototype.push.apply(fullList, mockData.company[k]);
+                Object.keys(masterData.company).forEach((k: string) => {
+                    Array.prototype.push.apply(fullList, masterData.company[k]);
                 })
             }
             let output = fullList.filter(c => {
@@ -93,7 +37,7 @@ export class ProductService{
 
     getColors(colorName: string): Observable<string[]>{
         return new Observable((observer) => {
-            let output = mockData.colors.filter(c => {
+            let output = masterData.colors.filter( (c: string) => {
                 return c.toLowerCase().indexOf(colorName) != -1;
             });            
             observer.next(output);

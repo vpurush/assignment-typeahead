@@ -5,10 +5,17 @@ product-list {
     flex: 0 0 auto; }
   product-list product-result {
     flex: 1 0; }
-.product-search .search-box fieldset {
-  border: none;
-  display: inline-block;
-  width: 17%; }
+.product-search .search-box {
+  display: flex;
+  flex-direction: row; }
+  .product-search .search-box fieldset {
+    flex: 2 0;
+    border: none;
+    display: inline-block; }
+    .product-search .search-box fieldset button {
+      font-size: 1.1em; }
+    .product-search .search-box fieldset:last-child {
+      flex: 1 0; }
 body {
   font-family: 'Roboto', sans-serif;
   padding: 0 0;
@@ -19,11 +26,13 @@ body {
   body .hide {
     display: none !important; }
   body button {
-    background-color: cornflowerblue;
+    color: white;
+    background-color: indianred;
     border: 0;
     box-shadow: none;
     border-radius: 5px;
-    padding: 7px 7px; }
+    padding: 7px 7px;
+    cursor: pointer; }
 
 .app {
   display: flex;

@@ -1,9 +1,20 @@
 .product-search{
     .search-box{
+        display: flex;
+        flex-direction:row;
+
         fieldset{
+            flex: 2 0;
             border: none;
             display: inline-block;
-            width: 17%;
+
+            button{
+                font-size: 1.1em;                
+            }
+
+            &:last-child{
+                flex: 1 0;
+            }
         }
     }
 }

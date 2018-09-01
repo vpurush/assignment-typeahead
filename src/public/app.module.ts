@@ -6,8 +6,8 @@ import {ProductListComponent} from './product/product-list.component';
 import {ProductSearchComponent} from './product/product-search.component';
 import {ProductResultComponent} from './product/product-result.component';
 import {ProductResultItemComponent} from './product/product-result-item.component';
-import {TypeaheadComponent} from './product/typeahead.component';
-import {RangeComponent} from './product/range.component';
+import {TypeaheadComponent} from './common/typeahead.component';
+import {RangeComponent} from './common/range.component';
 import { ProductService } from "./product/product.service";
 
 @NgModule({
