@@ -1,0 +1,41 @@
+.product-search-result{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .product-item{
+        flex: 0 0 auto;
+
+        display: flex;
+        flex-direction: column;
+        border: 1px solid lightgray;
+        margin: 1em 1em;
+        padding: 1em 1em;
+
+        img{
+            flex: 0 0 auto;
+            height: 7em;
+            width: 7em;
+            padding: 1em 1em;
+        }
+
+        span{
+            flex: 0 0 auto;
+            // text-align: center;
+
+            label{
+                text-align: left;
+                font-size: .5em;
+                color:gray;
+                display: block;
+            }
+
+            span.color-value{
+                display: block;
+                height: .7em;
+                width: 2em;
+                border: 1px solid lightgray;
+            }
+        }
+    }
+}

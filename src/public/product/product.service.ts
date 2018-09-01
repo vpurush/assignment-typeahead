@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
+import { generateProductList } from '../mock-data/product-list-generator';
+
 
 let mockData = {
     products: [
@@ -96,5 +98,11 @@ export class ProductService{
             });            
             observer.next(output);
         });
+    }
+
+    getProductList(productName: string, companyName: string, priceRange: string, color: string ): Observable<Array<any>>{
+        let result : Array<any> = generateProductList(productName, companyName, priceRange,  color);
+        // console.log("generateProductList", result);
+        return Observable.of(result);
     }
 }

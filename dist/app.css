@@ -1,6 +1,14 @@
-.product-list .search-box fieldset {
+product-list {
+  display: flex;
+  flex-direction: column; }
+  product-list product-search {
+    flex: 0 0 auto; }
+  product-list product-result {
+    flex: 1 0; }
+.product-search .search-box fieldset {
   border: none;
-  display: inline-block; }
+  display: inline-block;
+  width: 17%; }
 body {
   font-family: 'Roboto', sans-serif;
   padding: 0 0;
@@ -10,6 +18,12 @@ body {
     border-radius: 2px; }
   body .hide {
     display: none !important; }
+  body button {
+    background-color: cornflowerblue;
+    border: 0;
+    box-shadow: none;
+    border-radius: 5px;
+    padding: 7px 7px; }
 
 .app {
   display: flex;
@@ -41,8 +55,36 @@ body {
       flex: 0 0 auto; }
   .app main {
     flex: 1 0; }
+.product-search-result {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  .product-search-result .product-item {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    margin: 1em 1em;
+    padding: 1em 1em; }
+    .product-search-result .product-item img {
+      flex: 0 0 auto;
+      height: 7em;
+      width: 7em;
+      padding: 1em 1em; }
+    .product-search-result .product-item span {
+      flex: 0 0 auto; }
+      .product-search-result .product-item span label {
+        text-align: left;
+        font-size: .5em;
+        color: gray;
+        display: block; }
+      .product-search-result .product-item span span.color-value {
+        display: block;
+        height: .7em;
+        width: 2em;
+        border: 1px solid lightgray; }
 .typeahead {
-  width: 20em;
+  width: 15em;
   position: relative; }
   .typeahead input {
     width: 100%;
@@ -57,6 +99,7 @@ body {
     border: 1px solid lightgray;
     box-shadow: 1px 1px gray;
     border-radius: 2px;
+    background-color: white;
     max-height: 10em;
     overflow-y: scroll; }
     .typeahead ul.typeahead-list::-webkit-scrollbar {
@@ -78,5 +121,34 @@ body {
         padding-bottom: 0.5em; }
       .typeahead ul.typeahead-list li:hover {
         background-color: lightgrey; }
+.range {
+  width: 100%; }
+  .range .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s; }
+  .range .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: indianred;
+    cursor: pointer; }
+  .range input[type="range"] {
+    width: 45%;
+    display: inline-block; }
+  .range label {
+    font-size: 0.8em;
+    width: 45%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle; }
 
 /*# sourceMappingURL=app.css.map*/

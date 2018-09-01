@@ -1,5 +1,5 @@
 .typeahead{
-    width: 20em;
+    width: 15em;
     position: relative;
 
     input{
@@ -17,6 +17,7 @@
         border: 1px solid lightgray;
         box-shadow: 1px 1px gray;
         border-radius: 2px;
+        background-color: white;
 
         max-height: 10em;
         overflow-y: scroll;

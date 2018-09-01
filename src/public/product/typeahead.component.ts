@@ -42,9 +42,12 @@ export class TypeaheadComponent {
         this.showSuggestions = true;
     }
 
-    onBlur(){
+    onBlur(event: any){
         setTimeout(() => {
             this.showSuggestions = false;
+            if(event.target.value == ""){
+                this.onSelect.emit("");
+            }
         }, 200);
     }
 }

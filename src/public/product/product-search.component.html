@@ -1,0 +1,23 @@
+<section class="product-search">
+    <article class="search-box">
+        <fieldset class="buy">
+            <label>Buy</label>
+            <typeahead [data]="productObservable" (onInputChange)="productInputChange($event)" (onSelect)="productSelect($event)"></typeahead>
+        </fieldset>
+        <fieldset class="company">
+            <label>Company</label>
+            <typeahead [data]="companyObservable" (onInputChange)="companyInputChange($event)" (onSelect)="companySelect($event)"></typeahead>
+        </fieldset>
+        <fieldset class="color">
+            <label>Color</label>
+            <typeahead [data]="colorObservable" (onInputChange)="colorInputChange($event)" (onSelect)="colorSelect($event)"></typeahead>
+        </fieldset>
+        <fieldset class="price">
+            <label>Price</label>
+            <range [range-separators]="['< $400', '$401 to $1000', '$1001 to $10000', '> $10000']" (onRangeChange)="priceSelect($event)"></range>
+        </fieldset>
+        <fieldset class="buttons">
+            <button (click)="search()">Search</button>
+        </fieldset>
+    </article>
+</section>

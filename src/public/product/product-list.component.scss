@@ -1,8 +1,12 @@
-.product-list{
-    .search-box{
-        fieldset{
-            border: none;
-            display: inline-block;
-        }
+product-list{
+    display: flex;
+    flex-direction: column;
+
+    product-search{
+        flex: 0 0 auto;
+    }
+
+    product-result{
+        flex: 1 0;
     }
 }

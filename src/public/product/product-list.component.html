@@ -1,16 +1,2 @@
-<section class="product-list">
-    <article class="search-box">
-        <fieldset class="buy">
-            <label>Buy</label>
-            <typeahead [data]="productObservable" (onInputChange)="productInputChange($event)" (onSelect)="productSelect($event)"></typeahead>
-        </fieldset>
-        <fieldset class="company">
-            <label>Company</label>
-            <typeahead [data]="companyObservable" (onInputChange)="companyInputChange($event)" (onSelect)="companySelect($event)"></typeahead>
-        </fieldset>
-        <fieldset class="color">
-            <label>Color</label>
-            <typeahead [data]="colorObservable" (onInputChange)="colorInputChange($event)" (onSelect)="colorSelect($event)"></typeahead>
-        </fieldset>
-    </article>
-</section>
+<product-search (onSearch)="search($event)"></product-search>
+<product-result [data]="searchResult"></product-result>

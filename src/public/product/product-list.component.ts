@@ -14,38 +14,11 @@ export class ProductListComponent {
         
     }
 
-    selectedProduct:string = null;
-    productObservable: Observable<string[]> = Observable.of([]);
+    searchResult: Array<any>;
 
-    productInputChange(productName: string){
-        this.productObservable = this.productService.getProducts(productName);
-    }
-
-    productSelect(productName: string){
-        this.selectedProduct = productName;
-    }
-    
-
-    selectedCompany:string = null;
-    companyObservable: Observable<string[]> = Observable.of([]);
-
-    companyInputChange(companyName: string){
-        this.companyObservable = this.productService.getCompany(this.selectedProduct, companyName);
-    }
-
-    companySelect(companyName: string){
-        this.selectedCompany = companyName;
-    }
-    
-    
-    selectedColor:string = null;
-    colorObservable: Observable<string[]> = Observable.of([]);
-
-    colorInputChange(colorName: string){
-        this.colorObservable = this.productService.getColors(colorName);
-    }
-
-    colorSelect(colorName: string){
-        this.selectedCompany = colorName;
+    search(searchCriteria: any){
+        this.productService.getProductList(searchCriteria.product, searchCriteria.company, searchCriteria.price, searchCriteria.color).subscribe((pList) => {
+            this.searchResult = pList;
+        })
     }
 }

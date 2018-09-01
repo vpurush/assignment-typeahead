@@ -1,0 +1,20 @@
+<div class="product-item">
+    <img [src]="'/dist/images/' + p.imageUrl" class="product-image" />
+    <span class="product">
+        <label>Product:</label>
+        {{p.product}}
+    </span>
+    <span class="company">
+        <label>Company:</label>
+        {{p.company}}
+    </span>
+    <span class="price">
+        <label>Price:</label>
+        {{p.price | currency: 'USD' : 'symbol-narrow'}}
+    </span>
+    <span class="color">
+        <label>Color:</label>
+        <span class="color-value" [ngStyle]="{'background-color': p.color}">
+        </span>
+    </span>
+</div>

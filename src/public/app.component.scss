@@ -12,6 +12,15 @@ body{
     .hide{
         display: none !important;
     }
+
+    button
+    {
+        background-color: cornflowerblue;
+        border: 0;
+        box-shadow: none;
+        border-radius: 5px;
+        padding: 7px 7px;
+    }
 }
 
 .app{
