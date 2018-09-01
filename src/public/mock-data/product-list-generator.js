@@ -1,4 +1,5 @@
 import {Product} from '../models/product';
+import { masterData } from './master-data';
 
 const _images = {
     shoes: [
@@ -40,7 +41,7 @@ const _images = {
 }
 
 const generateProductList = (product, company, price, color, noOfItemsAlreadyLoaded) => {
-    console.log("product, company, price, color, noOfItemsAlreadyLoaded", product, company, price, color, noOfItemsAlreadyLoaded);
+    // console.log("product, company, price, color, noOfItemsAlreadyLoaded", product, company, price, color, noOfItemsAlreadyLoaded);
     let output = [];
     if(noOfItemsAlreadyLoaded < 50){
         let minPrice, maxPrice, priceRange;
@@ -57,14 +58,27 @@ const generateProductList = (product, company, price, color, noOfItemsAlreadyLoa
         }
         priceRange = maxPrice - minPrice;
 
-        console.log("maxPrice minPrice", maxPrice, minPrice);
+        // console.log("maxPrice minPrice", maxPrice, minPrice);
 
+        if(!product){
+            if(company){
+                Object.keys(masterData.company).forEach((pName) => {
+                    let companyFound = masterData.company[pName].some((c) => {
+                        console.log("c", c, company, c.toLowerCase() == company.toLowerCase())
+                        return c.toLowerCase() == company.toLowerCase();
+                    });
+
+                    if(companyFound){
+                        product = pName;
+                        return;
+                    }
+                });
+            }
+        }
         product = product || 'Handbags';
         company = company || 'Gucci';
         price = price || "$401 to $1000";
-        console.log("color", color);
         color = color || "orange";
-        console.log("color", color);
         
 
         for(let i=0; i<20; i++){
@@ -78,7 +92,7 @@ const generateProductList = (product, company, price, color, noOfItemsAlreadyLoa
         }
     }
 
-    console.log("generator output", output);
+    // console.log("generator output", output);
     return output;
 }
 

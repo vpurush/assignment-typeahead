@@ -24,18 +24,21 @@ export class ProductSearchComponent {
     productSelect(productName: string){
         this.selectedProduct = productName;
         this.companyObservable = Observable.of([]);
+        this.selectedCompany = null;
+        this.companyInputReset = true;
     }
     
 
     selectedCompany:string = null;
     companyObservable: Observable<string[]> = Observable.of([]);
-
+    companyInputReset: boolean = false;
     companyInputChange(companyName: string){
         this.companyObservable = this.productService.getCompany(this.selectedProduct, companyName);
     }
 
     companySelect(companyName: string){
         this.selectedCompany = companyName;
+        this.companyInputReset = false;
     }
     
     

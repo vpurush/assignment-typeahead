@@ -19,6 +19,13 @@ export class TypeaheadComponent {
         })
     }
 
+    @Input()
+    set resetInput(reset: boolean){
+        if(reset){
+            this.input = ""
+        }
+    }
+
     @Output()
     onInputChange: EventEmitter<string> = new EventEmitter<string>()
 
