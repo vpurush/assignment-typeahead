@@ -17,15 +17,13 @@ export class ProductSearchComponent {
     selectedProduct:string = null;
     productObservable: Observable<string[]> = Observable.of([]);
 
-    productInputChange(productName: string){
+    productInputChange(productName: string): Observable<string[]>{
         this.productObservable = this.productService.getProducts(productName);
+        return this.productObservable;
     }
 
     productSelect(productName: string){
         this.selectedProduct = productName;
-        this.companyObservable = Observable.of([]);
-        this.selectedCompany = null;
-        this.companyInputReset = true;
     }
     
 
@@ -33,7 +31,8 @@ export class ProductSearchComponent {
     companyObservable: Observable<string[]> = Observable.of([]);
     companyInputReset: boolean = false;
     companyInputChange(companyName: string){
-        this.companyObservable = this.productService.getCompany(this.selectedProduct, companyName);
+        this.companyObservable = this.productService.getCompaniesIgnoringProductName(companyName);
+        return this.companyObservable;
     }
 
     companySelect(companyName: string){
@@ -47,6 +46,7 @@ export class ProductSearchComponent {
 
     colorInputChange(colorName: string){
         this.colorObservable = this.productService.getColors(colorName);
+        return this.colorObservable;
     }
 
     colorSelect(colorName: string){
@@ -56,6 +56,21 @@ export class ProductSearchComponent {
     selectedPrice:string;
     priceSelect(price: string){
         this.selectedPrice = price;
+    }
+
+    typeaheadConfig: any = {
+        "buy":{
+            onChange: this.productInputChange.bind(this),
+            onSelect: this.productSelect.bind(this)
+        },
+        "company":{
+            onChange: this.companyInputChange.bind(this),
+            onSelect: this.companySelect.bind(this)
+        },
+        "color":{
+            onChange: this.colorInputChange.bind(this),
+            onSelect: this.colorSelect.bind(this)
+        }
     }
 
     @Output()

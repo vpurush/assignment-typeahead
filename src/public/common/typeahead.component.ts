@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 import {Observable} from 'rxjs';
 import './typeahead.component.scss';
 
@@ -10,14 +10,14 @@ export class TypeaheadComponent {
 
     input:string = ''
     showSuggestions:boolean = false
-    itemList: string[] = []
+    itemList: string[] = [];
+    currentEntityName: string = null;
+
+    @ViewChild("inputField")
+    inputField: ElementRef;
 
     @Input()
-    set data(data: Observable<string[]>){
-        data.subscribe(val => {
-            this.itemList = val;
-        })
-    }
+    config: any;
 
     @Input()
     set resetInput(reset: boolean){
@@ -27,19 +27,59 @@ export class TypeaheadComponent {
     }
 
     @Output()
-    onInputChange: EventEmitter<string> = new EventEmitter<string>()
-
-    @Output()
     onSelect: EventEmitter<string> = new EventEmitter<string>()
 
 
     select(item: string){
-        this.input = item;
-        this.onSelect.emit(item);
+        let tokens = this.input.split(":");
+        tokens[tokens.length - 1] = item + " ";
+        this.input = tokens.join(":");
+        this.itemList = [];
+        this.inputField.nativeElement.focus();
     }
 
-    onKeyup(event: any){
-        this.onInputChange.emit(event.target.value);
+    getSearchCriteria(str: string): any{
+        let tokens = str.split(" ");
+        if(tokens.length){
+            let lastToken = tokens[tokens.length -1];
+            if(lastToken && lastToken.indexOf(":") != -1){
+                let currentSearchCriteria = lastToken.split(":");
+                return {
+                    entityName: currentSearchCriteria[0],
+                    searchText: currentSearchCriteria[1]
+                } 
+            }
+        }
+        return null;
+    }
+
+    getConfigForEntity(entityName: string): any{
+        let output = null;
+        Object.keys(this.config).forEach(k => {
+            if(k == entityName){
+                output = this.config[k];
+            }
+        });
+        return output;
+    }
+
+    onInput(event: any){
+        this.showSuggestions = true;
+        let searchCriteria = this.getSearchCriteria(event.target.value);
+        // console.log("searchCriteria", searchCriteria);
+
+        if(searchCriteria){
+            let entityConfig = this.getConfigForEntity(searchCriteria.entityName);
+            if(entityConfig){
+                // console.log("entityConfig", entityConfig, this.itemList, this.showSuggestions, searchCriteria.searchText);
+        
+                this.currentEntityName = searchCriteria.entityName;
+                entityConfig.onChange(searchCriteria.searchText).subscribe((v: string[]) => {
+                    // console.log("onChange subscribe", v);
+                    this.itemList = v;
+                })
+            }
+        }
     }
 
     onFocus(){
@@ -48,10 +88,18 @@ export class TypeaheadComponent {
 
     onBlur(event: any){
         setTimeout(() => {
+            let tokens = this.input.split(" ");
+            tokens.forEach(t => {
+                if(t.indexOf(":") != -1){
+                    let searchCriteria = t.split(":");
+                    let entityName = searchCriteria[0], searchText = searchCriteria[1];
+
+                    let entityConfig = this.getConfigForEntity(entityName);
+                    entityConfig.onSelect(searchText);
+                }
+            })
+    
             this.showSuggestions = false;
-            if(event.target.value == ""){
-                this.onSelect.emit("");
-            }
         }, 200);
     }
 }

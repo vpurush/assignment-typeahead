@@ -2,9 +2,10 @@
     .search-box{
         display: flex;
         flex-direction:row;
+        justify-content: space-around;
 
         fieldset{
-            flex: 2 0;
+            flex: 1 0;
             border: none;
             display: inline-block;
 

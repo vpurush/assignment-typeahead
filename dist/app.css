@@ -5,17 +5,6 @@ product-list {
     flex: 0 0 auto; }
   product-list product-result {
     flex: 1 0; }
-.product-search .search-box {
-  display: flex;
-  flex-direction: row; }
-  .product-search .search-box fieldset {
-    flex: 2 0;
-    border: none;
-    display: inline-block; }
-    .product-search .search-box fieldset button {
-      font-size: 1.1em; }
-    .product-search .search-box fieldset:last-child {
-      flex: 1 0; }
 body {
   font-family: 'Roboto', sans-serif;
   padding: 0 0;
@@ -64,6 +53,18 @@ body {
       flex: 0 0 auto; }
   .app main {
     flex: 1 0; }
+.product-search .search-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+  .product-search .search-box fieldset {
+    flex: 1 0;
+    border: none;
+    display: inline-block; }
+    .product-search .search-box fieldset button {
+      font-size: 1.1em; }
+    .product-search .search-box fieldset:last-child {
+      flex: 1 0; }
 .product-search-result {
   display: flex;
   flex-direction: row;
@@ -121,7 +122,8 @@ body {
   position: relative; }
   .typeahead input {
     width: 100%;
-    height: 1.5em; }
+    height: 1.5em;
+    font-size: 1em; }
   .typeahead ul.typeahead-list {
     width: 100%;
     position: absolute;
@@ -145,6 +147,7 @@ body {
       -webkit-border-radius: 0px;
       -webkit-width: 5px; }
     .typeahead ul.typeahead-list li {
+      font-size: 1em;
       cursor: pointer;
       padding: .2em 1em;
       list-style: none; }

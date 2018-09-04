@@ -35,6 +35,24 @@ export class ProductService{
         });
     }
 
+    getCompaniesIgnoringProductName(companyName: string): Observable<string[]>{
+        return new Observable((observer) => {
+            let fullList: string[] = [];
+            Object.keys(masterData.company).forEach((k: string) => {
+                Array.prototype.push.apply(fullList, masterData.company[k]);
+            });
+            let output = fullList.filter(c => {
+                return c.toLowerCase().indexOf(companyName.toLowerCase()) != -1;
+            }).reduce((prevValue, c, i, arr) : any[] => {
+                if(prevValue.indexOf(c) == -1){
+                    prevValue.push(c);
+                }
+                return prevValue;
+            }, []);            
+            observer.next(output);
+        });
+    }
+
     getColors(colorName: string): Observable<string[]>{
         return new Observable((observer) => {
             let output = masterData.colors.filter( (c: string) => {
